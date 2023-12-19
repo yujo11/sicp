@@ -5,7 +5,7 @@ const isPrime = (n: number): boolean => {
 
   if (n === 2 || n === 3) return true
 
-  for (let i = 4; i < n; i++) {
+  for (let i = 4; i < n; i % 2 === 0 ? i++ : (i += 2)) {
     delay(10)
     if (n % i === 0) return false
   }
