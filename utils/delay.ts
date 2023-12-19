@@ -1,4 +1,4 @@
-function delay(ms: number): void {
+export default function delay(ms: number): void {
   const start = Date.now()
 
   while (true) {
