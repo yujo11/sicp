@@ -11,14 +11,31 @@ const fastExpt = (b: number, n: number): number => {
 }
 
 const expmod = (base: number, exp: number, m: number): number => {
+  /**
+   * 문제 1-26에서 나오는 expmod
+   */
   if (exp === 0) return 1
 
   if (exp % 2 === 0) {
-    return Math.pow(expmod(base, exp / 2, m), 2) % m
+    return (expmod(base, exp / 2, m) * expmod(base, exp / 2, m)) % m
   }
 
   return (base * expmod(base, exp - 1, m)) % m
 
+  /**
+   * 원래의 expmod
+   */
+  // if (exp === 0) return 1
+
+  // if (exp % 2 === 0) {
+  //   return Math.pow(expmod(base, exp / 2, m), 2) % m
+  // }
+
+  // return (base * expmod(base, exp - 1, m)) % m
+
+  /**
+   * fastExpt를 사용한 방법
+   */
   // return fastExpt(base, exp) % m
 }
 
