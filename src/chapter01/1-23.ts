@@ -1,4 +1,4 @@
-import delay from '../../utils/delay'
+import delay from '../utils/delay'
 
 const isPrime = (n: number): boolean => {
   if (n === 1) return false

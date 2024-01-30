@@ -1,4 +1,4 @@
-import delay from '../../utils/delay'
+import delay from '../utils/delay'
 
 const fastExpt = (b: number, n: number): number => {
   if (n === 0) return 1

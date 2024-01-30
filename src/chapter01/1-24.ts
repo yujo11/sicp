@@ -1,4 +1,4 @@
-import delay from '../../utils/delay'
+import delay from '../utils/delay'
 
 const expmod = (base: number, exp: number, m: number): number => {
   if (exp === 0) return 1
