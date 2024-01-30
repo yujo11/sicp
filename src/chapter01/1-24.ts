@@ -1,42 +1,13 @@
-import delay from '../utils/delay'
-
-const fastExpt = (b: number, n: number): number => {
-  if (n === 0) return 1
-
-  if (n % 2 === 0) {
-    return Math.pow(fastExpt(b, n / 2), 2)
-  }
-
-  return b * fastExpt(b, n - 1)
-}
+import delay from '../../utils/delay'
 
 const expmod = (base: number, exp: number, m: number): number => {
-  /**
-   * 문제 1-26에서 나오는 expmod
-   */
   if (exp === 0) return 1
 
   if (exp % 2 === 0) {
-    return (expmod(base, exp / 2, m) * expmod(base, exp / 2, m)) % m
+    return Math.pow(expmod(base, exp / 2, m), 2) % m
   }
 
   return (base * expmod(base, exp - 1, m)) % m
-
-  /**
-   * 원래의 expmod
-   */
-  // if (exp === 0) return 1
-
-  // if (exp % 2 === 0) {
-  //   return Math.pow(expmod(base, exp / 2, m), 2) % m
-  // }
-
-  // return (base * expmod(base, exp - 1, m)) % m
-
-  /**
-   * fastExpt를 사용한 방법
-   */
-  // return fastExpt(base, exp) % m
 }
 
 const fermatTest = (n: number): boolean => {
@@ -45,8 +16,11 @@ const fermatTest = (n: number): boolean => {
   return tryIt(1 + Math.floor(Math.random() * (n - 1)))
 }
 
+let i = 0
 // 페르마 판정법
 const fastIsPrime = (n: number, times: number): boolean => {
+  console.log(i++)
+
   delay(50)
   if (times === 0) return true
 
@@ -72,14 +46,14 @@ const isPrime = (n: number): boolean => {
 
 function primeTest(n: number, startTime: number) {
   return isPrime(n)
-    ? console.log('[Prime Test] is prime', Date.now() - startTime)
-    : console.log('[Prime Test] is not prime', Date.now() - startTime)
+    ? console.log('is prime', Date.now() - startTime)
+    : console.log('is not prime', Date.now() - startTime)
 }
 
 function fastPrimeTest(n: number, startTime: number) {
   return fastIsPrime(n, 10)
-    ? console.log('[Fast Prime Test] is prime', Date.now() - startTime)
-    : console.log('[Fast Prime Test] is not prime', Date.now() - startTime)
+    ? console.log('is prime', Date.now() - startTime)
+    : console.log('is not prime', Date.now() - startTime)
 }
 
 primeTest(10_001, Date.now())
@@ -90,3 +64,5 @@ fastPrimeTest(100_001, Date.now())
 
 primeTest(1_000_001, Date.now())
 fastPrimeTest(1_000_001, Date.now())
+
+fastPrimeTest(100_120_111_000_121, Date.now())
